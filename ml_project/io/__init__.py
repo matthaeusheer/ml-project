@@ -40,15 +40,14 @@ class DataHandler:
 
         return data
 
-    def store_prediction_file(self, predictions, header='Id,y', out_file_name='predictions.csv'):
+    def store_prediction_file(self, predictions, out_file_name='predictions.csv'):
         """Given a pandas series of predictions for samples, store those to a csv file in the data directory.
 
         Arguments
         ---------
         predictions: Pandas Series holding predicted values for given a set of samples.
-        header: To be conform with the required data format.
         out_file_name: Name of the file which will be placed in output directory.
         """
 
-        predictions.to_csv(os.path.join(DATA_DIR_PATH, self.dir_name, out_file_name), header=header)
+        predictions.to_csv(os.path.join(DATA_DIR_PATH, self.dir_name, out_file_name))
 
