@@ -109,3 +109,6 @@ data/*
 
 # intellij data
 .idea/
+
+# dependencies folder
+dependencies/
