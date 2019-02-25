@@ -8,6 +8,13 @@ from common import PROJECT_ROOT_PATH
 """
 Small helper script which installs python dependencies that cannot be directly installed via pip
 but need to be installed from source.
+
+I actually realized that it is enough to add a line for a dependency such as 
+
+-e git+https://github.com/bmurauer/pipelinehelper.git@76feecb6b6b2207429abaeda4378bd4adfd3b041#egg=Scikit_Pipeline_Helper
+
+to the requirements.txt file and pip will take care automatically fetching the git repo installing the dependecy 
+from source so this becomes obsolete. :-)
 """
 
 DEPENDENCIES = {'pipelinehelper': 'https://github.com/bmurauer/pipelinehelper.git'}
