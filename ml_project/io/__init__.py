@@ -13,32 +13,41 @@ class DataHandler:
     def __init__(self, dir_name):
         self.dir_name = dir_name
 
-    def load_train_and_test_data(self):
-        """Loads the training and test data in the specified data directory into pandas data frames.
+    def _load_csv_file_from_data_dir(self, file_name):
 
-        Returns
-        -------
-            data: A dict with keys 'train_data' and 'test_data' while entries hold corresponding pandas data frames.
-        """
+        if file_name not in [TRAIN_FILE_NAME, TEST_FILE_NAME]:
+            raise ValueError('File name should be {} or {}'.format(TRAIN_FILE_NAME, TEST_FILE_NAME))
 
         if not os.path.exists(os.path.join(DATA_DIR_PATH, self.dir_name)):
             raise IOError('Your specified folder {} does not exist. '
                           'Place a folder called {} into the main '
                           'data directory located at {} which then '
-                          'holds the a {} and {} file.'.format(self.dir_name, self.dir_name, DATA_DIR_PATH,
-                                                               TEST_FILE_NAME, TRAIN_FILE_NAME))
+                          'holds the a {} file.'.format(self.dir_name, self.dir_name, DATA_DIR_PATH, file_name))
 
-        for file_name in [TRAIN_FILE_NAME, TEST_FILE_NAME]:
-            if not os.path.exists(os.path.join(DATA_DIR_PATH, self.dir_name, file_name)):
-                raise IOError('Your data directory, {}, has to hold a file named {}'.format(self.dir_name, file_name))
+        if not os.path.exists(os.path.join(DATA_DIR_PATH, self.dir_name, TEST_FILE_NAME)):
+            raise IOError('Your data directory, {}, has to hold a file named {}'.format(self.dir_name, file_name))
 
-        train_data = pd.read_csv(os.path.join(DATA_DIR_PATH, self.dir_name, TRAIN_FILE_NAME)).set_index('Id')
-        test_data = pd.read_csv(os.path.join(DATA_DIR_PATH, self.dir_name, TEST_FILE_NAME)).set_index('Id')
+        return pd.read_csv(os.path.join(DATA_DIR_PATH, self.dir_name, file_name)).set_index('Id')
 
-        data = {'train_data': train_data,
-                'test_data': test_data}
+    def load_test_data(self):
+        """Loads the test data in the specified data directory into pandas data frame.
 
-        return data
+        Returns
+        -------
+            Pandas Data Frame holding the test data.
+        """
+
+        return self._load_csv_file_from_data_dir(TEST_FILE_NAME)
+
+    def load_train_data(self):
+        """Loads the train data in the specified data directory into pandas data frame.
+
+        Returns
+        -------
+            Pandas Data Frame holding the train data.
+        """
+
+        return self._load_csv_file_from_data_dir(TRAIN_FILE_NAME)
 
     def store_prediction_file(self, predictions, out_file_name='predictions.csv'):
         """Given a pandas series of predictions for samples, store those to a csv file in the data directory.
