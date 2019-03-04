@@ -24,7 +24,8 @@ class DataHandler:
                           'data directory located at {} which then '
                           'holds the a {} file.'.format(self.dir_name, self.dir_name, DATA_DIR_PATH, file_name))
 
-        if not os.path.exists(os.path.join(DATA_DIR_PATH, self.dir_name, TEST_FILE_NAME)):
+        if not os.path.exists(os.path.join(DATA_DIR_PATH, self.dir_name, file_name)):
+            print(os.path.join(DATA_DIR_PATH, self.dir_name, file_name))
             raise IOError('Your data directory, {}, has to hold a file named {}'.format(self.dir_name, file_name))
 
         return pd.read_csv(os.path.join(DATA_DIR_PATH, self.dir_name, file_name)).set_index('Id')
