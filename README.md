@@ -21,9 +21,11 @@ This will create a zipped tar ball in the data folder which can then be uploaded
 to the project tool. 
 
 ### Task 0
-Check out the task_0.ipynb. Everything should be clear.
+Check out the notebooks/task_0.ipynb. Instructions are given in the notebook.
 
 ### Task 1
+Check out the notebooks/task_1a.ipynb. Instructions are given in the notebook.  
+Check out the notebooks/task_1b.ipynb. Instructions are given in the notebook.
 
 ### Task 2
 

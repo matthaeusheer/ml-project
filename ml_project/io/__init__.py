@@ -62,7 +62,11 @@ class DataHandler:
 
         predictions.to_csv(os.path.join(DATA_DIR_PATH, self.dir_name, out_file_name))
 
-    def store_results_task1a(self, avg_rms_errors, out_file_name='results_task1.txt'):
-
+    def store_results_task1a(self, avg_rms_errors, out_file_name='results_task1a.txt'):
+        
         np.savetxt(os.path.join(DATA_DIR_PATH, self.dir_name, out_file_name), avg_rms_errors, fmt='%f')
+
+    def store_results_task1b(self, weight_vector, out_file_name='results_task1b.txt'):
+
+        np.savetxt(os.path.join(DATA_DIR_PATH, self.dir_name, out_file_name), weight_vector, fmt='%f')
 
