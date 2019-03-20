@@ -49,7 +49,7 @@ scipy==1.2.1
 seaborn==0.9.0
 Send2Trash==1.5.0
 six==1.12.0
-sklearn==0.0
+sklearn==0.20.3
 smmap2==2.0.5
 terminado==0.8.1
 testpath==0.4.2
