@@ -4,7 +4,7 @@ import sys
 import pandas as pd
 
 
-def get_phi_callables(n_functions=21, func_name_templ='phi_{}'):
+def get_phi_callables(n_functions=21, func_name_templ='phi_{}', module=sys.modules[__name__]):
     """Creates a dictionary of callable functions of this module if the function agrees with the given
     function name template.
 
@@ -12,19 +12,18 @@ def get_phi_callables(n_functions=21, func_name_templ='phi_{}'):
     ---------
     n_functions: How many functions (up to which scalar index) should be found and returned
     func_name_templ: The callables must have names which agree with this template
+    module: If None, current module is chosen, else module
 
     Returns
     -------
     functions: Dict (ordered after function index name) with keys being function names and values being the callable
     """
 
-    this_module = sys.modules[__name__]
-
     functions = {}
 
     for func_idx in range(1, n_functions + 1):
         func_name = func_name_templ.format(func_idx)
-        callable_func = getattr(this_module, func_name)
+        callable_func = getattr(module, func_name)
         functions[func_name] = callable_func
 
     return functions
@@ -39,7 +38,7 @@ def aggregate_feature_matrix(train_X, callable_func_dict):
     for sample in train_X:
 
         feature_vec = []
-        for transformer in callable_func_dict.values():
+        for name, transformer in callable_func_dict.items():
             feature_vec.append(transformer(sample))
 
         feature_mat.append(feature_vec)
@@ -131,6 +130,6 @@ def phi_20(feature):
 
 
 def phi_21(feature):
-    return 1
+    return 1.0
 
 
