@@ -33,3 +33,6 @@ Check out the notebooks/task2.ipynb. Instructions are given in the notebook.
 For this task, we have an additional notebook for the neural network approach. Since it
 did note produce better result than our traditional approach, we did not use it for 
 the prediction in the end. It is placed in notebooks/task2_tf.ipynb.
+
+### Task 3
+Blabla
